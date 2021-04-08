@@ -17,6 +17,6 @@ const dailytip = new Schema({
 
 mongoose.models = {};
 
-const DailyTip = mongoose.model('User', dailytip);
+const DailyTip = mongoose.model('DailyTip', dailytip);
 
 export default DailyTip;

@@ -17,6 +17,6 @@ const alert = new Schema({
 
 mongoose.models = {};
 
-const Alert = mongoose.model('User', alert);
+const Alert = mongoose.model('Alert', alert);
 
 export default Alert;
