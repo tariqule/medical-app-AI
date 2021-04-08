@@ -29,6 +29,15 @@ UserSchema.pre('save', function(next){
 	next();
 });
 
+UserSchema.methods.authenticate = function(password) {
+	return this.password === bcrypt.hashSync(password, SALT_ROUNDS);
+};
+
+UserSchema.virtual('fullName')
+    .get(function() {
+        return this.firstName + ' ' + this.lastName;
+    })
+
 mongoose.models = {};
 
 const User = mongoose.model('User', UserSchema);

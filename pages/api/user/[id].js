@@ -1,5 +1,4 @@
 import connectDB from '../../../middleware/mongodb';
-import bcrypt from 'bcrypt';
 import User from '../../../model/user';
 
 // get user from db

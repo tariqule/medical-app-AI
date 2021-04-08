@@ -1,9 +1,7 @@
 import connectDB from '../../../middleware/mongodb';
-import bcrypt from 'bcrypt';
 import DailyTip from '../../../model/dailytip';
 
 const handler = async (req, res) => {
-    const saltRounds = 10;
     const nurseId = req.user;
 
     if (req.method === 'POST') {
@@ -15,7 +13,6 @@ const handler = async (req, res) => {
                     tipDescription: tipDescription,
                     user: nurseId
                 });
-                // Create new user
                 const tipCreated = await tip.save();
                 console.log('tip created');
                 return res.status(200).send(tipCreated);
