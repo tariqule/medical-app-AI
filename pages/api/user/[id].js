@@ -17,3 +17,8 @@ const handler = async ({ query: { id } }, res) => {
 }
 
 export default connectDB(handler);
+
+// api/user?user=vc
+
+// api/user/vc
+
