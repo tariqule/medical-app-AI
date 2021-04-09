@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose, { isValidObjectId } from 'mongoose';
 const Schema = mongoose.Schema;
 const bcrypt = require('bcrypt');
 const SALT_ROUNDS = 10;
@@ -20,7 +20,11 @@ const UserSchema = new Schema({
     role: {
         type: String,
         enum: ["nurse", "patient"]
-    }
+    },
+    info: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Info'
+    }]
 });
 
 UserSchema.pre('save', function(next){
