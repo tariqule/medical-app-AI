@@ -7,7 +7,7 @@ const handler = async (req, res) => {
     const nurseId = req.user;
 
     if (req.method === 'GET') {
-        DailyTip.find({ }, function (err, tips) {
+        await DailyTip.find({ }, function (err, tips) {
             res.status(200).send(tips);
         });
     }
