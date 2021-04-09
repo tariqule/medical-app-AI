@@ -13,10 +13,8 @@ import mongoose from 'mongoose';
 // const handler = async ({ query: { id } }, res) => {
 
 const handler = async (req, res) => {
-    // console.log('id', id);
-    
-    const id = "vc"; // = req.params.id; 	// change to req.user; 
-
+    const { id } = req.query;
+ 
     var objId;
     
     await User.findOne({ 'username': id }, function (err, user) {
