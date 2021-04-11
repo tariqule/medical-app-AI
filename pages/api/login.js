@@ -26,7 +26,7 @@ const handler = async (req, res) => {
           // here, the max age is in milliseconds
           // res.cookie('token', token, { maxAge: jwtExpirySeconds * 1000, httpOnly: true });
           res.setHeader('Set-Cookie', serialize('token', token, { maxAge: jwtExpirySeconds * 1000, httpOnly: true }));
-          res.status(200).send({ screen: user.username, _id: user._id });
+          res.status(200).send({ screen: user.username, _id: user._id, token: token });
           console.log('logged in');
           req.user = user;
           //call the next middleware
