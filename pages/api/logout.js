@@ -1,5 +1,4 @@
 import { serialize } from 'cookie';
-import jwt from 'jsonwebtoken';
 
 export default (req, res) => {
     /* remove cookies from request header */
@@ -11,7 +10,7 @@ export default (req, res) => {
             })
         ]);
 
-        res.status(302).send('logged out').end();
+        res.status(302).send('logged out');
     }
     else {
         res.status(422).send('req_method_not_supported');
