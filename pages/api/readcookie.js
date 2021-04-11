@@ -27,4 +27,7 @@ export default (req, res) => {
         var userId = User.findOne({ username: payload.username });
         res.status(200).send({ screen: payload.username });
     }
+    else {
+        res.status(422).send('req_method_not_supported');
+    }
 }
