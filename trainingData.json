@@ -1,0 +1,284 @@
+[
+    {
+        "fever": true,
+        "cough": true,
+        "headache": true,
+        "soreThroat": true,
+        "difficultyBreathing": true,
+        "chanceOfCovid": 100        
+    },
+    {
+        "fever": false,
+        "cough": true,
+        "headache": true,
+        "soreThroat": true,
+        "difficultyBreathing": true,
+        "chanceOfCovid": 80        
+    },   
+    {
+        "fever": true,
+        "cough": false,
+        "headache": false,
+        "soreThroat": true,
+        "difficultyBreathing": true,
+        "chanceOfCovid": 60        
+    },    
+    {
+        "fever": true,
+        "cough": true,
+        "headache": false,
+        "soreThroat": true,
+        "difficultyBreathing": true,
+        "chanceOfCovid": 80        
+    },
+    {
+        "fever": true,
+        "cough": true,
+        "headache": true,
+        "soreThroat": false,
+        "difficultyBreathing": false,
+        "chanceOfCovid": 60        
+    },
+    {
+        "fever": false,
+        "cough": false,
+        "headache": true,
+        "soreThroat": false,
+        "difficultyBreathing": false,
+        "chanceOfCovid": 20        
+    },
+    {
+        "fever": false,
+        "cough": false,
+        "headache": false,
+        "soreThroat": false,
+        "difficultyBreathing": false,
+        "chanceOfCovid": 0        
+    },
+    {
+        "fever": true,
+        "cough": true,
+        "headache": true,
+        "soreThroat": true,
+        "difficultyBreathing": true,
+        "chanceOfCovid": 100        
+    },
+    {
+        "fever": false,
+        "cough": true,
+        "headache": true,
+        "soreThroat": true,
+        "difficultyBreathing": true,
+        "chanceOfCovid": 80        
+    },   
+    {
+        "fever": true,
+        "cough": false,
+        "headache": false,
+        "soreThroat": true,
+        "difficultyBreathing": true,
+        "chanceOfCovid": 60        
+    },    
+    {
+        "fever": true,
+        "cough": true,
+        "headache": false,
+        "soreThroat": true,
+        "difficultyBreathing": true,
+        "chanceOfCovid": 80        
+    },
+    {
+        "fever": true,
+        "cough": true,
+        "headache": true,
+        "soreThroat": false,
+        "difficultyBreathing": false,
+        "chanceOfCovid": 60        
+    },
+    {
+        "fever": false,
+        "cough": false,
+        "headache": true,
+        "soreThroat": false,
+        "difficultyBreathing": false,
+        "chanceOfCovid": 20        
+    },
+    {
+        "fever": false,
+        "cough": false,
+        "headache": false,
+        "soreThroat": false,
+        "difficultyBreathing": false,
+        "chanceOfCovid": 0        
+    },
+    {
+        "fever": true,
+        "cough": true,
+        "headache": true,
+        "soreThroat": true,
+        "difficultyBreathing": true,
+        "chanceOfCovid": 100        
+    },
+    {
+        "fever": false,
+        "cough": true,
+        "headache": true,
+        "soreThroat": true,
+        "difficultyBreathing": true,
+        "chanceOfCovid": 80        
+    },   
+    {
+        "fever": true,
+        "cough": false,
+        "headache": false,
+        "soreThroat": true,
+        "difficultyBreathing": true,
+        "chanceOfCovid": 60        
+    },    
+    {
+        "fever": true,
+        "cough": true,
+        "headache": false,
+        "soreThroat": true,
+        "difficultyBreathing": true,
+        "chanceOfCovid": 80        
+    },
+    {
+        "fever": true,
+        "cough": true,
+        "headache": true,
+        "soreThroat": false,
+        "difficultyBreathing": false,
+        "chanceOfCovid": 60        
+    },
+    {
+        "fever": false,
+        "cough": false,
+        "headache": true,
+        "soreThroat": false,
+        "difficultyBreathing": false,
+        "chanceOfCovid": 20        
+    },
+    {
+        "fever": false,
+        "cough": false,
+        "headache": false,
+        "soreThroat": false,
+        "difficultyBreathing": false,
+        "chanceOfCovid": 0        
+    },
+    {
+        "fever": true,
+        "cough": true,
+        "headache": true,
+        "soreThroat": true,
+        "difficultyBreathing": true,
+        "chanceOfCovid": 100        
+    },
+    {
+        "fever": false,
+        "cough": true,
+        "headache": true,
+        "soreThroat": true,
+        "difficultyBreathing": true,
+        "chanceOfCovid": 80        
+    },   
+    {
+        "fever": true,
+        "cough": false,
+        "headache": false,
+        "soreThroat": true,
+        "difficultyBreathing": true,
+        "chanceOfCovid": 60        
+    },    
+    {
+        "fever": true,
+        "cough": true,
+        "headache": false,
+        "soreThroat": true,
+        "difficultyBreathing": true,
+        "chanceOfCovid": 80        
+    },
+    {
+        "fever": true,
+        "cough": true,
+        "headache": true,
+        "soreThroat": false,
+        "difficultyBreathing": false,
+        "chanceOfCovid": 60        
+    },
+    {
+        "fever": false,
+        "cough": false,
+        "headache": true,
+        "soreThroat": false,
+        "difficultyBreathing": false,
+        "chanceOfCovid": 20        
+    },
+    {
+        "fever": false,
+        "cough": false,
+        "headache": false,
+        "soreThroat": false,
+        "difficultyBreathing": false,
+        "chanceOfCovid": 0        
+    },
+    {
+        "fever": true,
+        "cough": true,
+        "headache": true,
+        "soreThroat": true,
+        "difficultyBreathing": true,
+        "chanceOfCovid": 100        
+    },
+    {
+        "fever": false,
+        "cough": true,
+        "headache": true,
+        "soreThroat": true,
+        "difficultyBreathing": true,
+        "chanceOfCovid": 80        
+    },   
+    {
+        "fever": true,
+        "cough": false,
+        "headache": false,
+        "soreThroat": true,
+        "difficultyBreathing": true,
+        "chanceOfCovid": 60        
+    },    
+    {
+        "fever": true,
+        "cough": true,
+        "headache": false,
+        "soreThroat": true,
+        "difficultyBreathing": true,
+        "chanceOfCovid": 80        
+    },
+    {
+        "fever": true,
+        "cough": true,
+        "headache": true,
+        "soreThroat": false,
+        "difficultyBreathing": false,
+        "chanceOfCovid": 60        
+    },
+    {
+        "fever": false,
+        "cough": false,
+        "headache": true,
+        "soreThroat": false,
+        "difficultyBreathing": false,
+        "chanceOfCovid": 20        
+    },
+    {
+        "fever": false,
+        "cough": false,
+        "headache": false,
+        "soreThroat": false,
+        "difficultyBreathing": false,
+        "chanceOfCovid": 0        
+    }
+    
+
+]
