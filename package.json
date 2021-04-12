@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@tensorflow/tfjs": "^3.3.0",
     "bcrypt": "^5.0.1",
     "cookie-parser": "^1.4.5",
     "jsonwebtoken": "^8.5.1",

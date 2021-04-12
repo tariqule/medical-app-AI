@@ -1,5 +1,5 @@
-import connectDB from '../../middleware/mongodb';
-import Info from '../../model/info';
+import connectDB from '../../../middleware/mongodb';
+import Info from '../../../model/info';
 
 const handler = async (req, res) => {
     // const nurseId = req.user;
