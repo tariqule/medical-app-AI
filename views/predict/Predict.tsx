@@ -19,6 +19,7 @@ import React from "react";
 import CardBase from "../../components/CardBase";
 import SectionHeader from "../../components/SectionHeader";
 import MainLayout from "../../layouts";
+import router from "next/router";
 {
   /* username
   firstName
@@ -49,17 +50,21 @@ function Predict() {
 
   const classes = useStyles();
   const [state, setState] = React.useState({
-    age: false,
-    jason: false,
-    antoine: false,
+    fever: false,
+    cough: false,
+    headache: false,
+    soreThroat: false,
+    difficultyBreathing: false,
   });
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setState({ ...state, [event.target.name]: event.target.checked });
   };
 
-  const { age, jason, antoine } = state;
-  const error = [age, jason, antoine].filter((v) => v).length !== 2;
+  const { fever, headache, cough, soreThroat, difficultyBreathing } = state;
+  const error =
+    [fever, cough, headache, soreThroat, difficultyBreathing].filter((v) => v)
+      .length < 1;
 
   return (
     <div>
@@ -91,104 +96,75 @@ function Predict() {
                       <FormControlLabel
                         control={
                           <Checkbox
-                            checked={age}
+                            checked={fever}
                             onChange={handleChange}
-                            name="age"
+                            name="fever"
                           />
                         }
-                        label="Older than 50 years old"
+                        label="Have fever?"
                       />
                       <FormControlLabel
                         control={
                           <Checkbox
-                            checked={jason}
+                            checked={cough}
                             onChange={handleChange}
-                            name="jason"
+                            name="cough"
                           />
                         }
-                        label="Have chest pain"
+                        label="Is there cough?"
                       />
                       <FormControlLabel
                         control={
                           <Checkbox
-                            checked={antoine}
+                            checked={headache}
                             onChange={handleChange}
-                            name="antoine"
+                            name="headache"
                           />
                         }
-                        label="Fasting Blood sugar > 120mg/d"
+                        label="Is there headache?"
                       />
                       <FormControlLabel
                         control={
                           <Checkbox
-                            checked={antoine}
+                            checked={soreThroat}
                             onChange={handleChange}
-                            name="antoine"
+                            name="soreThroat"
                           />
                         }
-                        label="Have angina from exercising"
+                        label="Have sore throat?"
                       />
                       <FormControlLabel
                         control={
                           <Checkbox
-                            checked={antoine}
+                            checked={difficultyBreathing}
                             onChange={handleChange}
-                            name="antoine"
+                            name="difficultyBreathing"
                           />
                         }
-                        label="Have angina from exercising"
+                        label="Is there difficulty in  Breathing?"
                       />
                     </FormGroup>
                     {/* <FormHelperText>You can display an error</FormHelperText> */}
                   </FormControl>
                 </Grid>
-
-                <Grid item>
-                  <TextField
-                    required
-                    id="standard-TextField"
-                    label="Resting blood pressure (mmHg)"
-                    defaultValue=""
-                    fullWidth
-                    type="number"
-                  />
-                </Grid>
-                <Grid item>
-                  <TextField
-                    required
-                    id="standard-TextField"
-                    label="Serum cholesterol in mg/d"
-                    defaultValue=""
-                    fullWidth
-                    type="number"
-                  />
-                </Grid>
-                <Grid item>
-                  <TextField
-                    required
-                    id="standard-TextField"
-                    label="Maximum heart rate achieved"
-                    defaultValue=""
-                    fullWidth
-                    type="number"
-                  />
-                </Grid>
-
-                {/* <Grid item>
-                      <TextField
-                        required
-                        id="standard-TextField"
-                        label="info"
-                        defaultValue=""
-                        fullWidth
-                      />
-                    </Grid> */}
               </Grid>
             </>
           </CardBase>
         </Grid>
         <Grid item>
-          <Button variant="contained" color="primary" size="large">
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={() => {
+              console.log(state);
+              router.push({
+                pathname: "/results",
+                query: state,
+              });
+            }}
+            size="large"
+            disabled={error}
+          >
             Predict
           </Button>
         </Grid>

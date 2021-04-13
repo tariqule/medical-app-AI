@@ -6,7 +6,7 @@ function useIntro() {
   React.useEffect(() => {
     setTimeout(() => {
       setState(false);
-    }, 3000);
+    }, 2000);
   }, []);
   return [state];
 }

@@ -1,11 +1,16 @@
-import { Grid, makeStyles, Typography } from "@material-ui/core";
+import { Button, Grid, makeStyles, Typography } from "@material-ui/core";
 import React from "react";
 import CardBase from "../../components/CardBase";
 import SectionHeader from "../../components/SectionHeader";
+import CovidAnimation from "./Animation/covid";
+import router from "next/router";
 const useStyles = makeStyles((theme) => ({
   card: {
     cursor: "pointer",
     borderRadius: "100px",
+  },
+  covid: {
+    marginTop: theme.spacing(5),
   },
 }));
 function Home() {
@@ -35,6 +40,19 @@ function Home() {
                 <Typography>Patients</Typography>
               </>
             </CardBase>
+          </Grid>
+        </Grid>
+        <Grid
+          container
+          justify="center"
+          alignItems="center"
+          className={classes.covid}
+        >
+          <Grid item>
+            <Button onClick={() => router.push("/predict-disease")}>
+              <CovidAnimation />
+              <Typography>Find COVID Report Using AI</Typography>
+            </Button>
           </Grid>
         </Grid>
       </>

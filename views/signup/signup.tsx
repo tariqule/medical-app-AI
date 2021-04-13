@@ -10,10 +10,13 @@ import {
   Theme,
   createStyles,
 } from "@material-ui/core";
+import axios from "axios";
 import React from "react";
 import CardBase from "../../components/CardBase";
 import SectionHeader from "../../components/SectionHeader";
+import { useLocalStorage } from "../../hooks/useLocalStorage";
 import MainLayout from "../../layouts";
+import router from "next/router";
 {
   /* username
   firstName
@@ -42,13 +45,28 @@ function Signup() {
     password: "",
     role: "",
   });
+  const [loginState, setLoginState] = useLocalStorage("auth", false);
+  const [userData, setUserData] = useLocalStorage("user-data", {});
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setState({ ...state, [event.target.name]: event.target.checked });
+    setState({ ...state, [event.target.name]: event.target.value });
+    console.log({ [event.target.name]: event.target.value });
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     console.log(state);
+    await axios
+      .post("/api/register", state)
+      .then((res) => {
+        if (res.statusText === "OK") setLoginState(true);
+        setUserData(state);
+      })
+      .then(() => {
+        router.push("/?status=success&show-pop=true");
+      })
+      .catch((err) => {
+        alert(err);
+      });
   };
   return (
     <div>
@@ -74,6 +92,7 @@ function Signup() {
                     defaultValue=""
                     fullWidth
                     name="username"
+                    onChange={handleChange}
                   />
                 </Grid>
                 <Grid item>
@@ -84,6 +103,7 @@ function Signup() {
                     defaultValue=""
                     fullWidth
                     name="firstName"
+                    onChange={handleChange}
                   />
                 </Grid>
                 <Grid item>
@@ -94,6 +114,7 @@ function Signup() {
                     defaultValue=""
                     fullWidth
                     name="lastName"
+                    onChange={handleChange}
                   />
                 </Grid>
                 <Grid item>
@@ -104,6 +125,7 @@ function Signup() {
                     defaultValue=""
                     fullWidth
                     name="password"
+                    onChange={handleChange}
                   />
                 </Grid>
                 <Grid item>
@@ -116,8 +138,8 @@ function Signup() {
                       name="role"
                       onChange={handleChange}
                     >
-                      <MenuItem value={10}>Nurse</MenuItem>
-                      <MenuItem value={20}>Patient</MenuItem>
+                      <MenuItem value={"nurse"}>Nurse</MenuItem>
+                      <MenuItem value={"patient"}>Patient</MenuItem>
                     </Select>
                   </FormControl>
                 </Grid>
