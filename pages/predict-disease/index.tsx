@@ -1,11 +1,11 @@
 import React from "react";
 import MainLayout from "../../layouts";
-import Signup from "../../views/signup";
+import Predict from "../../views/predict";
 
 function index() {
   return (
     <MainLayout>
-      <Signup />
+      <Predict />
     </MainLayout>
   );
 }

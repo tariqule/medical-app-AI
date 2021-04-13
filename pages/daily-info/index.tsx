@@ -1,11 +1,11 @@
 import React from "react";
 import MainLayout from "../../layouts";
-import Signup from "../../views/signup";
+import DailyInfo from "../../views/dailyInfo";
 
 function index() {
   return (
     <MainLayout>
-      <Signup />
+      <DailyInfo />
     </MainLayout>
   );
 }
