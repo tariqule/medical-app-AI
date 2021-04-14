@@ -3,7 +3,6 @@ import Alert from "../../../model/alert";
 
 // get all daily tips posted by nurses
 const handler = async (req, res) => {
-
   if (req.method === "GET") {
     await Alert.find({}, function (err, alerts) {
       res.status(200).send(alerts);

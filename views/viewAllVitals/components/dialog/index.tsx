@@ -42,20 +42,18 @@ export default function InfoDialog({ open, onClose, patientData }: Props) {
   return (
     <div>
       <Dialog open={open} onClose={onClose} aria-labelledby="form-dialog-title">
-        <DialogTitle id="form-dialog-title">Send Alert</DialogTitle>
+        <DialogTitle id="form-dialog-title">Alert Details</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            Name: {patientData?.firstName} {patientData?.lastName}
+            Alert Description: {patientData?.alertDescription}
           </DialogContentText>
-          <DialogContentText>
-            UserName: {patientData?.username}
-          </DialogContentText>
-          <TextField
+          <DialogContentText>Title: {patientData?.alertType}</DialogContentText>
+          {/* <TextField
             autoFocus
             margin="dense"
             id="name"
             label="Alert Type"
-            name="alertType"
+            type="alertType"
             fullWidth
             onChange={handleChange}
           />
@@ -63,18 +61,18 @@ export default function InfoDialog({ open, onClose, patientData }: Props) {
             margin="dense"
             id="name"
             label="Alert Description"
-            name="alertDescription"
+            type="alertDescription"
             fullWidth
             onChange={handleChange}
-          />
+          /> */}
         </DialogContent>
         <DialogActions>
           <Button onClick={onClose} color="primary" variant="outlined">
             Cancel
           </Button>
-          <Button onClick={onHandle} color="primary" variant="contained">
+          {/* <Button onClick={onHandle} color="primary" variant="contained">
             send
-          </Button>
+          </Button> */}
         </DialogActions>
       </Dialog>
     </div>

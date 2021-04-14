@@ -42,7 +42,7 @@ function AuthHome() {
                 withShadow
                 liftUp
                 className={classes.card}
-                onClick={() => router.push("/daily-info")}
+                onClick={() => router.push("/nurse/daily-info")}
               >
                 <>
                   <img src="/svg/nurses.svg" width={"300px"}></img>
@@ -77,7 +77,11 @@ function AuthHome() {
         className={classes.covid}
       >
         <Grid item>
-          <Button>
+          <Button
+            onClick={() => {
+              router.push("/predict-disease");
+            }}
+          >
             <CovidAnimation />
             <Typography>Find COVID Report Using AI</Typography>
           </Button>

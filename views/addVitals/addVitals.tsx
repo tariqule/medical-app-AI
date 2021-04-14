@@ -89,6 +89,7 @@ function AddVitals() {
         )
         .then((res) => {
           console.log(res.data);
+          alert("Vitals Added!");
         })
         .catch((err) => console.log(err));
 

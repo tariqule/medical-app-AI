@@ -20,6 +20,7 @@ import CardBase from "../../components/CardBase";
 import SectionHeader from "../../components/SectionHeader";
 import MainLayout from "../../layouts";
 import router from "next/router";
+import { useLocalStorage } from "../../hooks/useLocalStorage";
 {
   /* username
   firstName
@@ -57,8 +58,12 @@ function Predict() {
     difficultyBreathing: false,
   });
 
+  const [covid, setCovid] = useLocalStorage("sad-data", {});
+
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setState({ ...state, [event.target.name]: event.target.checked });
+
+    setCovid({ ...state, [event.target.name]: event.target.checked });
   };
 
   const { fever, headache, cough, soreThroat, difficultyBreathing } = state;
