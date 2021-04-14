@@ -5,7 +5,7 @@ const trainingDataJson = require("../../../trainingData.json");
 var lossValue;
 var elapsedTime;
 
-const handler = async (req, res) => {
+export default async (req, res) => {
   const { fever, cough, headache, soreThroat, difficultyBreathing } = req.body;
 
   if (req.method === "POST") {
@@ -73,16 +73,16 @@ const handler = async (req, res) => {
         },
       });
       const results = model.predict(testingData);
-
+      console.log("results111: " + results);
+      //res.status(200).send(results);
+      
       results.array().then((array) => {
-        console.log(array[0]);
-        res.status(200).send(array[0]);
-      });
-      // res.status(200).send(results);
-      // console.log("results: " + results);
+        console.log(array[0])
+      
+        res.status(200).send(array[0])
+      })
+
     }
     run();
   }
 };
-
-export default connectDB(handler);
