@@ -1,19 +1,19 @@
 import {
-  MenuItem,
   Button,
+  createStyles,
   FormControl,
   Grid,
   InputLabel,
+  makeStyles,
   Select,
   TextField,
-  makeStyles,
   Theme,
-  createStyles,
 } from "@material-ui/core";
+import axios from "axios";
 import React from "react";
 import CardBase from "../../components/CardBase";
 import SectionHeader from "../../components/SectionHeader";
-import MainLayout from "../../layouts";
+import { useLocalStorage } from "../../hooks/useLocalStorage";
 {
   /* username
   firstName
@@ -25,21 +25,39 @@ import MainLayout from "../../layouts";
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     formControl: {
-      margin: theme.spacing(1),
+      marginLeft: "10px",
       minWidth: 120,
+      maxWidth: 355,
     },
     selectEmpty: {
       marginTop: theme.spacing(2),
     },
   })
 );
-function Signin() {
+function DailyTipNurse() {
   const classes = useStyles();
-  const [state, setState] = React.useState<any>();
+  const [state, setState] = React.useState({
+    tipName: "",
+    tipDescription: "",
+  });
+  const [userData, setUserData] = useLocalStorage("user-data", {});
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setState({ ...state, [event.target.name]: event.target.value });
     console.log({ [event.target.name]: event.target.value });
+  };
+
+  const handleSubmit = () => {
+    console.log(state);
+    const sendDailyTip = async () =>
+      await axios.post("/api/nurse/dailytip", state);
+
+    sendDailyTip()
+      .then((res) => {
+        console.log(res.data);
+        alert("Daily Tip Sent");
+      })
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -52,7 +70,7 @@ function Signin() {
         direction="column"
       >
         <Grid item>
-          <SectionHeader title="Sign In To Use Medical App" titleVariant="h2" />
+          <SectionHeader title="Add Daily Tips" titleVariant="h2" />
         </Grid>
         <Grid item>
           <CardBase withShadow liftUp={false} style={{ minWidth: 400 }}>
@@ -61,41 +79,37 @@ function Signin() {
                 <Grid item>
                   <TextField
                     required
-                    onChange={handleChange}
                     id="standard-TextField"
-                    label="Username"
+                    label="Tip Title"
                     defaultValue=""
                     fullWidth
+                    onChange={handleChange}
+                    name="tipName"
                   />
                 </Grid>
-
                 <Grid item>
                   <TextField
                     required
                     id="standard-TextField"
-                    label="password"
+                    label="Tip Description"
                     defaultValue=""
                     fullWidth
                     onChange={handleChange}
+                    name="tipDescription"
                   />
                 </Grid>
-
-                {/* <Grid item>
-                      <TextField
-                        required
-                        id="standard-TextField"
-                        label="info"
-                        defaultValue=""
-                        fullWidth
-                      />
-                    </Grid> */}
               </Grid>
             </>
           </CardBase>
         </Grid>
         <Grid item>
-          <Button variant="contained" color="primary" size="large">
-            Sign in
+          <Button
+            variant="contained"
+            color="primary"
+            size="large"
+            onClick={handleSubmit}
+          >
+            Send Daily Tips
           </Button>
         </Grid>
       </Grid>
@@ -103,4 +117,4 @@ function Signin() {
   );
 }
 
-export default Signin;
+export default DailyTipNurse;

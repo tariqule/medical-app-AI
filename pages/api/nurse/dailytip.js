@@ -2,7 +2,7 @@ import connectDB from "../../../middleware/mongodb";
 import DailyTip from "../../../model/dailytip";
 
 const handler = async (req, res) => {
-  const nurseId = req.user;
+  //   const nurseId = req.user;
 
   if (req.method === "POST") {
     const { tipName, tipDescription } = req.body;
@@ -11,7 +11,7 @@ const handler = async (req, res) => {
         const tip = new DailyTip({
           tipName: tipName,
           tipDescription: tipDescription,
-          user: nurseId,
+          //   user: nurseId,
         });
         const tipCreated = await tip.save();
         console.log("tip created");

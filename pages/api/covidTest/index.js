@@ -73,8 +73,13 @@ const handler = async (req, res) => {
         },
       });
       const results = model.predict(testingData);
-      res.status(200).send(results);
-      console.log("results: " + results);
+
+      results.array().then((array) => {
+        console.log(array[0]);
+        res.status(200).send(array[0]);
+      });
+      // res.status(200).send(results);
+      // console.log("results: " + results);
     }
     run();
   }
