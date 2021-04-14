@@ -1,22 +1,18 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 const Schema = mongoose.Schema;
 
 const dailytip = new Schema({
-    tipName: {
-        type: String
-    },
-    tipDescription: {
-        type: String
-    },
-    user: [{
-        type: Schema.Types.ObjectId,
-        ref: 'User'
-    }]
+  tipName: {
+    type: String,
+  },
+  tipDescription: {
+    type: String,
+  },
 });
 
 mongoose.models = {};
 
-const DailyTip = mongoose.model('DailyTip', dailytip);
+const DailyTip = mongoose.model("DailyTip", dailytip);
 
 export default DailyTip;

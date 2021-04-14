@@ -53,7 +53,14 @@ function AuthHome() {
           )}
           {userData?.role === "patient" && (
             <Grid item>
-              <CardBase withShadow liftUp className={classes.card}>
+              <CardBase
+                withShadow
+                liftUp
+                className={classes.card}
+                onClick={() => {
+                  router.push("/patient/daily-info");
+                }}
+              >
                 <>
                   <img src="/svg/patient.svg" width={"300px"}></img>
                   <Typography>Patients</Typography>

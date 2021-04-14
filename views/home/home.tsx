@@ -26,7 +26,14 @@ function Home() {
 
         <Grid container justify="center" alignItems="center" spacing={3}>
           <Grid item>
-            <CardBase withShadow liftUp className={classes.card}>
+            <CardBase
+              withShadow
+              liftUp
+              className={classes.card}
+              onClick={() => {
+                router.push("/nurse/daily-info");
+              }}
+            >
               <>
                 <img src="/svg/nurses.svg" width={"300px"}></img>
                 <Typography>Nurses</Typography>

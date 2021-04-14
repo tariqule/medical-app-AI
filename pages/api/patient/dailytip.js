@@ -3,8 +3,8 @@ import DailyTip from "../../../model/dailytip";
 
 // get all daily tips posted by nurses
 const handler = async (req, res) => {
-  const saltRounds = 10;
-  const nurseId = req.user;
+  //   const saltRounds = 10;
+  //   const nurseId = req.user;
 
   if (req.method === "GET") {
     await DailyTip.find({}, function (err, tips) {
