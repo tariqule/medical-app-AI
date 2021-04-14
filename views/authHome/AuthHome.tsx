@@ -77,7 +77,11 @@ function AuthHome() {
         className={classes.covid}
       >
         <Grid item>
-          <Button>
+          <Button
+            onClick={() => {
+              router.push("/predict-disease");
+            }}
+          >
             <CovidAnimation />
             <Typography>Find COVID Report Using AI</Typography>
           </Button>

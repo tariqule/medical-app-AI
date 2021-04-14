@@ -7,8 +7,8 @@ import axios from "axios";
 import InfoDialog from "./components/dialog";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
 
-export default function ViewAllVitals() {
-  const [patientData, setPatientData] = React.useState<any>();
+export default function ViewAllAlerts() {
+  const [patientData, setPatientData] = useLocalStorage("sa", []);
   const [open, setOpen] = React.useState<boolean>(false);
   const [selectedUser, setSelectedUser] = React.useState<any>();
   const [userData, setUserData] = useLocalStorage("user-data", {});
@@ -34,6 +34,7 @@ export default function ViewAllVitals() {
     }));
   };
   React.useEffect(() => {
+    // setInterval(() => {
     fetchAllUserPatients()
       .then((res) => {
         console.log(dataConv(res.data));
@@ -42,6 +43,7 @@ export default function ViewAllVitals() {
       .catch((err) => {
         console.log(err);
       });
+    // }, 3000);
   }, []);
 
   const handleClose = () => {

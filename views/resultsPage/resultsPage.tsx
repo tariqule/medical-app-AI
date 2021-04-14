@@ -1,23 +1,19 @@
 import {
-  createStyles,
   Button,
+  colors,
+  createStyles,
   Grid,
   makeStyles,
+  Theme,
   Typography,
   withStyles,
-  Theme,
-  colors,
 } from "@material-ui/core";
+import LinearProgress from "@material-ui/core/LinearProgress";
+import router from "next/router";
 import React from "react";
 import CardBase from "../../components/CardBase";
 import SectionHeader from "../../components/SectionHeader";
-import CovidAnimation from "./Animation/covid";
-import CircularProgress, {
-  CircularProgressProps,
-} from "@material-ui/core/CircularProgress";
-import LinearProgress from "@material-ui/core/LinearProgress";
-
-import router from "next/router";
+import { useLocalStorage } from "../../hooks/useLocalStorage";
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -35,6 +31,11 @@ const useStyles = makeStyles((theme) => ({
 function ResultsPage() {
   const classes = useStyles();
   const [state, setState] = React.useState(Math.floor(Math.random() * 100));
+  const [res, setRes] = useLocalStorage("rs", {});
+
+  React.useEffect(() => {
+    setState(res);
+  }, [res]);
   return (
     <div>
       <>
@@ -55,7 +56,7 @@ function ResultsPage() {
             <CardBase withShadow liftUp className={classes.card}>
               <>
                 <Typography variant={"h4"}>
-                  Probability of having covid is {state}%
+                  Probability of having covid is {Math.floor(res[0])}%
                 </Typography>
                 {state < 50 && (
                   <>
