@@ -4,9 +4,12 @@ import { useDemoData } from "@material-ui/x-grid-data-generator";
 import { Grid } from "@material-ui/core";
 import SectionHeader from "../../components/SectionHeader";
 import axios from "axios";
+import InfoDialog from "./components/dialog";
 
 export default function BasicFilteringGrid() {
   const [patientData, setPatientData] = React.useState<any>();
+  const [open, setOpen] = React.useState<boolean>(false);
+  const [selectedUser, setSelectedUser] = React.useState<any>();
 
   const { data } = useDemoData({
     dataSet: "Commodity",
@@ -36,27 +39,41 @@ export default function BasicFilteringGrid() {
         console.log(err);
       });
   }, []);
+
+  const handleClose = () => {
+    setOpen(false);
+  };
   return (
-    <Grid container justify="center" direction="column" alignItems="center">
-      <Grid item>
-        <SectionHeader title="View All Patients" titleVariant="h3" />
+    <>
+      <Grid container justify="center" direction="column" alignItems="center">
+        <Grid item>
+          <SectionHeader title="View All Patients" titleVariant="h3" />
+        </Grid>
+        <Grid item>
+          <div style={{ height: 800, width: "800px" }}>
+            <DataGrid
+              onCellClick={(param: GridCellParams, event: React.MouseEvent) => {
+                setSelectedUser(param.row);
+                setOpen(true);
+                console.log(param.row);
+              }}
+              columns={[
+                { field: "firstName", width: 200, headerName: "First Name" },
+                { field: "lastName", width: 200, headerName: "Last Name" },
+                { field: "username", width: 200, headerName: "User Name" },
+              ]}
+              rows={patientData || []}
+              // filterModel={}
+            />
+          </div>
+        </Grid>
       </Grid>
-      <Grid item>
-        <div style={{ height: 800, width: "800px" }}>
-          <DataGrid
-            onCellClick={(param: GridCellParams, event: React.MouseEvent) => {
-              console.log(param.row);
-            }}
-            columns={[
-              { field: "firstName", width: 200, headerName: "First Name" },
-              { field: "lastName", width: 200, headerName: "Last Name" },
-              { field: "username", width: 200, headerName: "User Name" },
-            ]}
-            rows={patientData || []}
-            // filterModel={}
-          />
-        </div>
-      </Grid>
-    </Grid>
+
+      <InfoDialog
+        open={open}
+        patientData={selectedUser}
+        onClose={handleClose}
+      />
+    </>
   );
 }
