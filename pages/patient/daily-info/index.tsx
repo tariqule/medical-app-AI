@@ -1,12 +1,11 @@
 import React from "react";
 import MainLayout from "../../../layouts";
-import AddVitals from "../../../views/addVitals";
-import DailyInfo from "../../../views/dailyInfo";
+import PatientMain from "../../../views/patientMain";
 
 function index() {
   return (
     <MainLayout>
-      <AddVitals />
+      <PatientMain />
     </MainLayout>
   );
 }

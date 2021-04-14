@@ -42,7 +42,7 @@ function AuthHome() {
                 withShadow
                 liftUp
                 className={classes.card}
-                onClick={() => router.push("/daily-info")}
+                onClick={() => router.push("/nurse/daily-info")}
               >
                 <>
                   <img src="/svg/nurses.svg" width={"300px"}></img>
