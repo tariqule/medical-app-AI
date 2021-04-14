@@ -99,6 +99,8 @@ export default function PrimarySearchAppBar() {
   ] = React.useState<null | HTMLElement>(null);
 
   const [loginState, setState] = useLocalStorage("auth", false);
+  const [userData, setUserData] = useLocalStorage("user-data", {});
+
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
@@ -121,6 +123,8 @@ export default function PrimarySearchAppBar() {
 
   const handleLogout = () => {
     setState(false);
+    setUserData(null);
+
     window.location.reload();
   };
   const menuId = "primary-search-account-menu";

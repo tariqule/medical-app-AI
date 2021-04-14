@@ -9,7 +9,11 @@
   },
   "dependencies": {
     "@material-ui/core": "^4.11.3",
+    "@material-ui/data-grid": "^4.0.0-alpha.25",
     "@material-ui/icons": "^4.11.2",
+    "@material-ui/lab": "^4.0.0-alpha.57",
+    "@material-ui/x-grid": "^4.0.0-alpha.25",
+    "@material-ui/x-grid-data-generator": "^4.0.0-alpha.25",
     "@tensorflow/tfjs": "^3.3.0",
     "axios": "^0.21.1",
     "bcrypt": "^5.0.1",

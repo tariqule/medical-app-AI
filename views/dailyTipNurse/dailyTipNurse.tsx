@@ -1,61 +1,65 @@
 import {
-  MenuItem,
   Button,
+  createStyles,
   FormControl,
   Grid,
   InputLabel,
+  makeStyles,
   Select,
   TextField,
-  makeStyles,
   Theme,
-  createStyles,
 } from "@material-ui/core";
 import axios from "axios";
 import React from "react";
 import CardBase from "../../components/CardBase";
 import SectionHeader from "../../components/SectionHeader";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
-import MainLayout from "../../layouts";
-
-import router from "next/router";
-
+{
+  /* username
+  firstName
+  lastName
+  password
+  role
+  info */
+}
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     formControl: {
-      margin: theme.spacing(1),
+      marginLeft: "10px",
       minWidth: 120,
+      maxWidth: 355,
     },
     selectEmpty: {
       marginTop: theme.spacing(2),
     },
   })
 );
-function Signin() {
+function DailyTipNurse() {
   const classes = useStyles();
-  const [state, setState] = React.useState<any>();
+  const [state, setState] = React.useState({
+    tipName: "",
+    tipDescription: "",
+  });
+  const [userData, setUserData] = useLocalStorage("user-data", {});
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setState({ ...state, [event.target.name]: event.target.value });
     console.log({ [event.target.name]: event.target.value });
   };
-  const [userData, setUserData] = useLocalStorage("user-data", {});
-  const [loginState, setLoginState] = useLocalStorage("auth", false);
 
-  const handleSubmit = async () => {
-    await axios
-      .post("/api/login", state, { withCredentials: true })
+  const handleSubmit = () => {
+    console.log(state);
+    const sendDailyTip = async () =>
+      await axios.post("/api/nurse/dailytip", state);
+
+    sendDailyTip()
       .then((res) => {
         console.log(res.data);
-        setUserData(res.data?.user);
-        setLoginState(true);
+        alert("Daily Tip Sent");
       })
-      .then(() => {
-        router.push("/");
-      })
-      .catch((err) => {});
-
-    console.log(state);
+      .catch((err) => console.log(err));
   };
+
   return (
     <div>
       <Grid
@@ -66,7 +70,7 @@ function Signin() {
         direction="column"
       >
         <Grid item>
-          <SectionHeader title="Sign In To Use Medical App" titleVariant="h2" />
+          <SectionHeader title="Add Daily Tips" titleVariant="h2" />
         </Grid>
         <Grid item>
           <CardBase withShadow liftUp={false} style={{ minWidth: 400 }}>
@@ -75,36 +79,25 @@ function Signin() {
                 <Grid item>
                   <TextField
                     required
-                    onChange={handleChange}
                     id="standard-TextField"
-                    label="Username"
+                    label="Tip Title"
                     defaultValue=""
                     fullWidth
-                    name="username"
+                    onChange={handleChange}
+                    name="tipName"
                   />
                 </Grid>
-
                 <Grid item>
                   <TextField
                     required
                     id="standard-TextField"
-                    label="password"
+                    label="Tip Description"
                     defaultValue=""
                     fullWidth
-                    name="password"
                     onChange={handleChange}
+                    name="tipDescription"
                   />
                 </Grid>
-
-                {/* <Grid item>
-                      <TextField
-                        required
-                        id="standard-TextField"
-                        label="info"
-                        defaultValue=""
-                        fullWidth
-                      />
-                    </Grid> */}
               </Grid>
             </>
           </CardBase>
@@ -116,7 +109,7 @@ function Signin() {
             size="large"
             onClick={handleSubmit}
           >
-            Sign in
+            Send Daily Tips
           </Button>
         </Grid>
       </Grid>
@@ -124,4 +117,4 @@ function Signin() {
   );
 }
 
-export default Signin;
+export default DailyTipNurse;
