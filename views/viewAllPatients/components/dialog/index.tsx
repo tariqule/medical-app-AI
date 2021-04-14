@@ -28,10 +28,15 @@ export default function InfoDialog({ open, onClose, patientData }: Props) {
   };
 
   const sendData = (data) => {
-    return axios.post("", data);
+    return axios.post("/api/patient/alert", data);
   };
   const onHandle = (e) => {
-    // sendData();
+    e.preventDefault();
+    console.log(state);
+    sendData(state).then((res) => {
+      console.log(res.data);
+      alert("ALERT SENT!");
+    });
   };
 
   return (
@@ -50,7 +55,7 @@ export default function InfoDialog({ open, onClose, patientData }: Props) {
             margin="dense"
             id="name"
             label="Alert Type"
-            type="alertType"
+            name="alertType"
             fullWidth
             onChange={handleChange}
           />
@@ -58,7 +63,7 @@ export default function InfoDialog({ open, onClose, patientData }: Props) {
             margin="dense"
             id="name"
             label="Alert Description"
-            type="alertDescription"
+            name="alertDescription"
             fullWidth
             onChange={handleChange}
           />

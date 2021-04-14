@@ -46,7 +46,7 @@ function PatientMain() {
                 liftUp
                 className={classes.card}
                 onClick={() => {
-                  router.push("/nurse/daily-tip");
+                  router.push("/patient/daily-tip");
                 }}
               >
                 <Typography variant="h5">View Daily Tips</Typography>
@@ -57,7 +57,7 @@ function PatientMain() {
                   className={classes.card}
                   liftUp
                   onClick={() => {
-                    router.push("/nurse/view-all-patients");
+                    router.push("/patient/view-all-vitals");
                   }}
                 >
                   <Typography variant="h5">Add Vitals</Typography>
