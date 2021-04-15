@@ -22,7 +22,7 @@ export default function InfoDialog({ open, onClose, patientData }: Props) {
         </DialogContent>
         <DialogActions>
           <Button onClick={onClose} color="primary" variant="outlined">
-            Cancel
+            Close
           </Button>
         </DialogActions>
       </Dialog>
