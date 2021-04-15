@@ -5,17 +5,10 @@ import Signin from "../../views/signin";
 import router from "next/router";
 import axios from "axios";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
-import { CircularProgress, Grid } from "@material-ui/core";
 function index() {
   const [covid, setCovid] = useLocalStorage("sad-data", {});
   const [res, setRes] = useLocalStorage("rs", {});
 
-  const [loading, setLoading] = React.useState<boolean>(true);
-  React.useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 4000);
-  }, []);
   React.useEffect(() => {
     const {
       fever,
@@ -50,19 +43,7 @@ function index() {
   }, []);
   return (
     <MainLayout>
-      {loading ? (
-        <CircularProgress
-          size="large"
-          style={{
-            width: "20%",
-            marginLeft: "760px",
-            display: "grid",
-            placeItem: "center",
-          }}
-        />
-      ) : (
-        <ResultsPage />
-      )}
+      <ResultsPage />
     </MainLayout>
   );
 }

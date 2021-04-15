@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 function ResultsPage() {
   const classes = useStyles();
-  const [state, setState] = React.useState(Math.floor(Math.random() * 100));
+  const [state, setState] = React.useState();
   const [res, setRes] = useLocalStorage("rs", {});
 
   React.useEffect(() => {
