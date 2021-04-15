@@ -75,6 +75,18 @@ function PatientMain() {
                   <Typography variant="h5">Post Alerts</Typography>
                 </CardBase>
               </Grid>
+              <Grid item>
+                <CardBase
+                  withShadow
+                  className={classes.card}
+                  liftUp
+                  onClick={() => {
+                    router.push("/relax");
+                  }}
+                >
+                  <Typography variant="h5">Relax Yourself</Typography>
+                </CardBase>
+              </Grid>
             </Grid>
           </Grid>
         </Grid>
