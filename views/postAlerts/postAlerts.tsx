@@ -1,22 +1,17 @@
 import {
-  MenuItem,
   Button,
-  FormControl,
-  Grid,
-  InputLabel,
-  Select,
-  TextField,
-  makeStyles,
-  Theme,
   createStyles,
+  Grid,
+  makeStyles,
+  TextField,
+  Theme,
 } from "@material-ui/core";
 import axios from "axios";
 import React from "react";
 import CardBase from "../../components/CardBase";
 import SectionHeader from "../../components/SectionHeader";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
-import MainLayout from "../../layouts";
-import router from "next/router";
+import InfoDialog from "./dialog";
 {
   /* username
   firstName
@@ -42,6 +37,8 @@ function PostAlerts() {
   const [loginState, setLoginState] = useLocalStorage("auth", false);
   const [userData, setUserData] = useLocalStorage("user-data", {});
 
+  const [open, setOpen] = React.useState<boolean>();
+
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setState({ ...state, [event.target.name]: event.target.value });
     console.log({ [event.target.name]: event.target.value });
@@ -56,7 +53,8 @@ function PostAlerts() {
       .post("/api/patient/alert", stateToSend)
       .then((res) => {
         console.log(res.data);
-        alert("alert sent!!");
+        // alert("alert sent!!");
+        setOpen(true);
       })
       .catch((err) => {
         alert(err);
@@ -115,6 +113,13 @@ function PostAlerts() {
           </Button>
         </Grid>
       </Grid>
+
+      <InfoDialog
+        open={open}
+        onClose={() => {
+          setOpen(false);
+        }}
+      />
     </div>
   );
 }
