@@ -5,7 +5,7 @@
         "headache": true,
         "soreThroat": true,
         "difficultyBreathing": true,
-        "chanceOfCovid": 100        
+        "chanceOfCovid": 85        
     },
     {
         "fever": false,
@@ -61,7 +61,7 @@
         "headache": true,
         "soreThroat": true,
         "difficultyBreathing": true,
-        "chanceOfCovid": 100        
+        "chanceOfCovid": 85        
     },
     {
         "fever": false,
@@ -117,7 +117,7 @@
         "headache": true,
         "soreThroat": true,
         "difficultyBreathing": true,
-        "chanceOfCovid": 100        
+        "chanceOfCovid": 85        
     },
     {
         "fever": false,
@@ -173,7 +173,7 @@
         "headache": true,
         "soreThroat": true,
         "difficultyBreathing": true,
-        "chanceOfCovid": 100        
+        "chanceOfCovid": 85        
     },
     {
         "fever": false,
@@ -229,7 +229,7 @@
         "headache": true,
         "soreThroat": true,
         "difficultyBreathing": true,
-        "chanceOfCovid": 100        
+        "chanceOfCovid": 85        
     },
     {
         "fever": false,

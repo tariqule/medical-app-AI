@@ -5,6 +5,7 @@ import { Grid } from "@material-ui/core";
 import SectionHeader from "../../components/SectionHeader";
 import axios from "axios";
 import InfoDialog from "./components/dialog";
+import { useLocalStorage } from "../../hooks/useLocalStorage";
 
 export default function ViewAllAlerts() {
   const [patientData, setPatientData] = React.useState<any>();
@@ -16,6 +17,7 @@ export default function ViewAllAlerts() {
     rowLength: 100,
     maxColumns: 6,
   });
+  const [userData, setUserData] = useLocalStorage("user-data", {});
 
   const fetchAllUserPatients = async () => {
     return await axios.get("/api/nurse/getAlerts");
