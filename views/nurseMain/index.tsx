@@ -62,6 +62,18 @@ function NurseMain() {
                   <Typography variant="h5">View All Patients</Typography>
                 </CardBase>
               </Grid>
+              <Grid item>
+                <CardBase
+                  withShadow
+                  className={classes.card}
+                  liftUp
+                  onClick={() => {
+                    router.push("/alerts");
+                  }}
+                >
+                  <Typography variant="h5">View All Alerts</Typography>
+                </CardBase>
+              </Grid>
             </Grid>
           </Grid>
         </Grid>

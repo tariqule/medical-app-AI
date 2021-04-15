@@ -63,12 +63,24 @@ function PatientMain() {
                   <Typography variant="h5">Add Vitals</Typography>
                 </CardBase>
               </Grid>
+              <Grid item>
+                <CardBase
+                  withShadow
+                  className={classes.card}
+                  liftUp
+                  onClick={() => {
+                    router.push("/post-alert");
+                  }}
+                >
+                  <Typography variant="h5">Post Alerts</Typography>
+                </CardBase>
+              </Grid>
             </Grid>
           </Grid>
         </Grid>
-        <Grid item lg={6} xs={12}>
+        {/* <Grid item lg={6} xs={12}>
           <ViewAllAlerts />
-        </Grid>
+        </Grid> */}
       </Grid>
     </div>
   );
