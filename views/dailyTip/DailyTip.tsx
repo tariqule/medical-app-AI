@@ -10,6 +10,7 @@ import router from "next/router";
 import React from "react";
 import CardBase from "../../components/CardBase";
 import SectionHeader from "../../components/SectionHeader";
+import withAuth from "../../hoc/withAuth";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -81,4 +82,4 @@ function DailyTip() {
   );
 }
 
-export default DailyTip;
+export default withAuth(DailyTip);

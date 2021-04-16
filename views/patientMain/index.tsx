@@ -61,7 +61,7 @@ function PatientMain() {
                     router.push("/patient/view-all-vitals");
                   }}
                 >
-                  <Typography variant="h5">Add Vitals</Typography>
+                  <Typography variant="h5">Add/View Vitals</Typography>
                 </CardBase>
               </Grid>
               <Grid item>

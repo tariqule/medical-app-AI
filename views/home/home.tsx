@@ -6,7 +6,8 @@ import CovidAnimation from "./Animation/covid";
 import router from "next/router";
 const useStyles = makeStyles((theme) => ({
   card: {
-    cursor: "pointer",
+    cursor: `pointer`,
+
     borderRadius: "100px",
   },
   covid: {

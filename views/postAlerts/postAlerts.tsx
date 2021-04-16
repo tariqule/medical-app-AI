@@ -80,9 +80,10 @@ function PostAlerts() {
                   <TextField
                     required
                     id="standard-TextField"
-                    label="alert Type"
+                    label="Alert Type"
                     defaultValue=""
                     fullWidth
+                    placeholder="I need help!"
                     name="alertType"
                     onChange={handleChange}
                   />
@@ -91,9 +92,10 @@ function PostAlerts() {
                   <TextField
                     required
                     id="standard-TextField"
-                    label="alert Description"
+                    label="Alert Description"
                     defaultValue=""
                     fullWidth
+                    placeholder="I am having headaches and fever"
                     name="alertDescription"
                     onChange={handleChange}
                   />
@@ -115,7 +117,7 @@ function PostAlerts() {
       </Grid>
 
       <InfoDialog
-        open={open}
+        open={open || false}
         onClose={() => {
           setOpen(false);
         }}
