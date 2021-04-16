@@ -124,6 +124,7 @@ function Signup() {
                     label="password"
                     defaultValue=""
                     fullWidth
+                    type="password"
                     name="password"
                     onChange={handleChange}
                   />
