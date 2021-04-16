@@ -10,6 +10,9 @@ First, run the development server:
    yarn dev
 
 ```
+Open http://localhost:3000 with your browser to see the result.
+
+
 
 ## Screenshots
 <img width="1791" alt="Screen Shot 2021-04-13 at 2 30 53 AM" src="https://user-images.githubusercontent.com/45430120/114506782-4666b000-9c00-11eb-9432-c4ad09d75614.png">
