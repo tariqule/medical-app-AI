@@ -1,5 +1,6 @@
 import {
   Button,
+  CircularProgress,
   colors,
   createStyles,
   Grid,
@@ -9,6 +10,7 @@ import {
   withStyles,
 } from "@material-ui/core";
 import LinearProgress from "@material-ui/core/LinearProgress";
+import axios from "axios";
 import router from "next/router";
 import React from "react";
 import CardBase from "../../components/CardBase";
@@ -30,73 +32,127 @@ const useStyles = makeStyles((theme) => ({
 }));
 function ResultsPage() {
   const classes = useStyles();
-  const [state, setState] = React.useState();
+  const [state, setState] = React.useState<any>();
+  // const [res, setRes] = useLocalStorage("rs", {});
+
+  const [covid, setCovid] = useLocalStorage("sad-data", {});
   const [res, setRes] = useLocalStorage("rs", {});
 
+  const [loading, setLoading] = React.useState<boolean>(true);
+
   React.useEffect(() => {
-    setState(res);
-  }, [res]);
+    const {
+      fever,
+      cough,
+      headache,
+      soreThroat,
+      difficultyBreathing,
+    } = router.query;
+
+    const dataToSend = {
+      fever: Boolean(fever),
+      cough: Boolean(cough),
+      headache: Boolean(headache),
+      soreThroat: Boolean(soreThroat),
+      difficultyBreathing: Boolean(difficultyBreathing),
+    };
+    console.log("das" + JSON.stringify(dataToSend));
+    const fetch = async () => {
+      await axios
+        .post("/api/covidTest", covid)
+        .then((res) => {
+          console.log(res.data);
+          setState(res.data);
+          setLoading(false);
+          setRes(res.data);
+        })
+        .catch((err) => {
+          setLoading(false);
+          console.log(err);
+        });
+    };
+    fetch();
+
+    console.log(router.query);
+  }, []);
+
+  // React.useEffect(() => {
+  //   setState(res);
+  // }, [res]);
   return (
     <div>
-      <>
-        <SectionHeader
-          title="Results"
-          titleVariant={"h2"}
-          subtitle="Our AI has given the results below"
-        />
-
-        <Grid
-          container
-          justify="center"
-          alignItems="center"
-          spacing={3}
-          direction="column"
+      {loading ? (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
         >
-          <Grid item>
-            <CardBase withShadow liftUp className={classes.card}>
-              <>
-                <Typography variant={"h4"}>
-                  Probability of having covid is {Math.floor(res[0])}%
-                </Typography>
-                {state < 50 && (
-                  <>
-                    <Typography variant={"body1"} className={classes.covid}>
-                      You have less chance of having covid
-                    </Typography>
-                  </>
-                )}
-                {state > 70 && state < 80 && (
-                  <>
-                    <Typography variant={"body1"} className={classes.covid}>
-                      You have moderate chance of having covid
-                    </Typography>
-                  </>
-                )}
-                {state > 80 && (
-                  <>
-                    <Typography variant={"body1"} className={classes.covid}>
-                      You need to see a doctor/nurse ASAP
-                    </Typography>
-                  </>
-                )}
-              </>
-            </CardBase>
+          <CircularProgress size="large" style={{ width: "20%" }} />
+        </div>
+      ) : (
+        <>
+          <SectionHeader
+            title="Results"
+            titleVariant={"h2"}
+            subtitle="Our AI has given the results below"
+          />
+
+          <Grid
+            container
+            justify="center"
+            alignItems="center"
+            spacing={3}
+            direction="column"
+          >
+            <Grid item>
+              <CardBase withShadow liftUp className={classes.card}>
+                <>
+                  <Typography variant={"h4"}>
+                    Probability of having covid is{" "}
+                    {state && Math.floor(state[0])}%
+                  </Typography>
+                  {state && state[0] < 50 && (
+                    <>
+                      <Typography variant={"body1"} className={classes.covid}>
+                        You have less chance of having covid
+                      </Typography>
+                    </>
+                  )}
+                  {state && state[0] > 70 && state[0] < 80 && (
+                    <>
+                      <Typography variant={"body1"} className={classes.covid}>
+                        You have moderate chance of having covid
+                      </Typography>
+                    </>
+                  )}
+                  {state && state[0] > 80 && (
+                    <>
+                      <Typography variant={"body1"} className={classes.covid}>
+                        You need to see a doctor/nurse ASAP
+                      </Typography>
+                    </>
+                  )}
+                </>
+              </CardBase>
+            </Grid>
+            <Grid item>
+              <Bar value={state && state[0]} />
+            </Grid>
+            <Grid>
+              <Button
+                onClick={() => router.push("/")}
+                size="large"
+                variant="outlined"
+                className={classes.Button}
+              >
+                Back to Dashboard
+              </Button>
+            </Grid>
           </Grid>
-          <Grid item>
-            <Bar value={state} />
-          </Grid>
-          <Grid>
-            <Button
-              onClick={() => router.push("/")}
-              size="large"
-              variant="outlined"
-              className={classes.Button}
-            >
-              Back to Dashboard
-            </Button>
-          </Grid>
-        </Grid>
-      </>
+        </>
+      )}
     </div>
   );
 }

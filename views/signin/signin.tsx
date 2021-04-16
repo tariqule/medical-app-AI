@@ -9,6 +9,7 @@ import {
   makeStyles,
   Theme,
   createStyles,
+  Typography,
 } from "@material-ui/core";
 import axios from "axios";
 import React from "react";
@@ -30,7 +31,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
   })
 );
-function Signin() {
+function Signin(props) {
   const classes = useStyles();
   const [state, setState] = React.useState<any>();
 
@@ -66,7 +67,11 @@ function Signin() {
         direction="column"
       >
         <Grid item>
-          <SectionHeader title="Sign In To Use Medical App" titleVariant="h2" />
+          <SectionHeader
+            title="Sign In To Use Medical App"
+            titleVariant="h2"
+            subtitle={props.privatePage || ""}
+          />
         </Grid>
         <Grid item>
           <CardBase withShadow liftUp={false} style={{ minWidth: 400 }}>
@@ -117,6 +122,21 @@ function Signin() {
             onClick={handleSubmit}
           >
             Sign in
+          </Button>
+        </Grid>
+        <Grid item>
+          <Typography>Don't have an account?</Typography>
+        </Grid>
+        <Grid item>
+          <Button
+            variant="contained"
+            color="primary"
+            size="large"
+            onClick={() => {
+              router.push("/signup");
+            }}
+          >
+            Register
           </Button>
         </Grid>
       </Grid>

@@ -11,6 +11,7 @@ import SectionHeader from "../../components/SectionHeader";
 import AddVitals from "../addVitals";
 import router from "next/router";
 import ViewAllAlerts from "../viewAllAlerts";
+import withAuth from "../../hoc/withAuth";
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     card: {
@@ -98,4 +99,4 @@ function PatientMain() {
   );
 }
 
-export default PatientMain;
+export default withAuth(PatientMain);

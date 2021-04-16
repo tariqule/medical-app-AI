@@ -41,7 +41,14 @@ function Home() {
             </CardBase>
           </Grid>
           <Grid item>
-            <CardBase withShadow liftUp className={classes.card}>
+            <CardBase
+              withShadow
+              liftUp
+              className={classes.card}
+              onClick={() => {
+                router.push("/login");
+              }}
+            >
               <>
                 <img src="/svg/patient.svg" width={"300px"}></img>
                 <Typography>Patients</Typography>

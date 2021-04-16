@@ -10,6 +10,7 @@ import CardBase from "../../components/CardBase";
 import SectionHeader from "../../components/SectionHeader";
 import AddVitals from "../addVitals";
 import router from "next/router";
+import withAuth from "../../hoc/withAuth";
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     card: {
@@ -85,4 +86,4 @@ function NurseMain() {
   );
 }
 
-export default NurseMain;
+export default withAuth(NurseMain);
