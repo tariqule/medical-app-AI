@@ -43,19 +43,25 @@ function Signin(props) {
   const [loginState, setLoginState] = useLocalStorage("auth", false);
 
   const handleSubmit = async () => {
-    await axios
-      .post("/api/login", state, { withCredentials: true })
-      .then((res) => {
-        console.log(res.data);
-        setUserData(res.data?.user);
-        setLoginState(true);
-      })
-      .then(() => {
-        router.push("/");
-      })
-      .catch((err) => {});
+    if (state?.username && state?.password) {
+      await axios
+        .post("/api/login", state, { withCredentials: true })
+        .then((res) => {
+          console.log(res.data);
+          setUserData(res.data?.user);
+          setLoginState(true);
+        })
+        .then(() => {
+          router.push("/");
+        })
+        .catch((err) => {
+          alert("Invalid username or password");
+        });
 
-    console.log(state);
+      console.log(state);
+    } else {
+      alert("Enter username and Password");
+    }
   };
   return (
     <div>
