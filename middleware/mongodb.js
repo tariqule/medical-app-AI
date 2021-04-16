@@ -8,7 +8,8 @@ const connectDB = (handler) => async (req, res) => {
   // Use new db connection
   // mongodb+srv://tariq:dGwNfuwoiRNTsQCr@cluster0.o7wcr.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
   await mongoose.connect(
-    "mongodb+srv://tariq:YPbdRVdqIbsyyiZU@cluster0.o7wcr.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+    process.env.mongodburl,
+    //"mongodb+srv://tariq:YPbdRVdqIbsyyiZU@cluster0.o7wcr.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
     {
       useUnifiedTopology: true,
       useFindAndModify: false,
