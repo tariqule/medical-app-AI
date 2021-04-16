@@ -9,6 +9,7 @@ import {
   makeStyles,
   Theme,
   createStyles,
+  Typography,
 } from "@material-ui/core";
 import axios from "axios";
 import React from "react";
@@ -30,7 +31,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
   })
 );
-function Signin() {
+function Signin(props) {
   const classes = useStyles();
   const [state, setState] = React.useState<any>();
 
@@ -42,19 +43,25 @@ function Signin() {
   const [loginState, setLoginState] = useLocalStorage("auth", false);
 
   const handleSubmit = async () => {
-    await axios
-      .post("/api/login", state, { withCredentials: true })
-      .then((res) => {
-        console.log(res.data);
-        setUserData(res.data?.user);
-        setLoginState(true);
-      })
-      .then(() => {
-        router.push("/");
-      })
-      .catch((err) => {});
+    if (state?.username && state?.password) {
+      await axios
+        .post("/api/login", state, { withCredentials: true })
+        .then((res) => {
+          console.log(res.data);
+          setUserData(res.data?.user);
+          setLoginState(true);
+        })
+        .then(() => {
+          router.push("/");
+        })
+        .catch((err) => {
+          alert("Invalid username or password");
+        });
 
-    console.log(state);
+      console.log(state);
+    } else {
+      alert("Enter username and Password");
+    }
   };
   return (
     <div>
@@ -66,7 +73,11 @@ function Signin() {
         direction="column"
       >
         <Grid item>
-          <SectionHeader title="Sign In To Use Medical App" titleVariant="h2" />
+          <SectionHeader
+            title="Sign In To Use Medical App"
+            titleVariant="h2"
+            subtitle={props.privatePage || ""}
+          />
         </Grid>
         <Grid item>
           <CardBase withShadow liftUp={false} style={{ minWidth: 400 }}>
@@ -117,6 +128,21 @@ function Signin() {
             onClick={handleSubmit}
           >
             Sign in
+          </Button>
+        </Grid>
+        <Grid item>
+          <Typography>Don't have an account?</Typography>
+        </Grid>
+        <Grid item>
+          <Button
+            variant="contained"
+            color="primary"
+            size="large"
+            onClick={() => {
+              router.push("/signup");
+            }}
+          >
+            Register
           </Button>
         </Grid>
       </Grid>

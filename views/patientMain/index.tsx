@@ -11,6 +11,7 @@ import SectionHeader from "../../components/SectionHeader";
 import AddVitals from "../addVitals";
 import router from "next/router";
 import ViewAllAlerts from "../viewAllAlerts";
+import withAuth from "../../hoc/withAuth";
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     card: {
@@ -60,7 +61,7 @@ function PatientMain() {
                     router.push("/patient/view-all-vitals");
                   }}
                 >
-                  <Typography variant="h5">Add Vitals</Typography>
+                  <Typography variant="h5">Add/View Vitals</Typography>
                 </CardBase>
               </Grid>
               <Grid item>
@@ -98,4 +99,4 @@ function PatientMain() {
   );
 }
 
-export default PatientMain;
+export default withAuth(PatientMain);

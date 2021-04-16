@@ -6,7 +6,8 @@ import CovidAnimation from "./Animation/covid";
 import router from "next/router";
 const useStyles = makeStyles((theme) => ({
   card: {
-    cursor: "pointer",
+    cursor: `pointer`,
+
     borderRadius: "100px",
   },
   covid: {
@@ -41,7 +42,14 @@ function Home() {
             </CardBase>
           </Grid>
           <Grid item>
-            <CardBase withShadow liftUp className={classes.card}>
+            <CardBase
+              withShadow
+              liftUp
+              className={classes.card}
+              onClick={() => {
+                router.push("/login");
+              }}
+            >
               <>
                 <img src="/svg/patient.svg" width={"300px"}></img>
                 <Typography>Patients</Typography>

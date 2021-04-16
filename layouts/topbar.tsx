@@ -155,7 +155,11 @@ export default function PrimarySearchAppBar() {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <MenuItem>
+      <MenuItem
+        onClick={() => {
+          router.push("/patient/daily-tip");
+        }}
+      >
         <IconButton aria-label="show 4 new mails" color="inherit">
           <Badge badgeContent={4} color="secondary">
             <MailIcon />
@@ -247,14 +251,23 @@ export default function PrimarySearchAppBar() {
             </div>
           ) : (
             <div className={classes.sectionDesktop}>
-              <IconButton aria-label="show 4 new mails" color="inherit">
-                <Badge badgeContent={4} color="secondary">
+              <IconButton
+                aria-label="show 4 new mails"
+                color="inherit"
+                onClick={() => {
+                  router.push("/patient/daily-tip");
+                }}
+              >
+                <Badge badgeContent={1} color="secondary">
                   <MailIcon />
                 </Badge>
               </IconButton>
               <IconButton
                 aria-label="show 17 new notifications"
                 color="inherit"
+                onClick={() => {
+                  router.push("/patient/view-all-vitals");
+                }}
               >
                 <Badge badgeContent={17} color="secondary">
                   <NotificationsIcon />

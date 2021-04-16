@@ -12,55 +12,51 @@ const handler = async (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
 
-    console.log('username', username);
-    console.log('password', password);
+    console.log("username", username);
+    console.log("password", password);
     const user = await User.findOne({ username: username });
-      if(user) {
-        if (bcrypt.compareSync(password, user.password)) {
-          // Create a new token with the user id in the payload
-          // and which expires 300 seconds after issue
-          const token = jwt.sign(
-            { id: user._id, username: user.username },
-            jwtKey,
-            { algorithm: "HS256", expiresIn: jwtExpirySeconds }
-          );
-          // set the cookie as the token string, with a similar max age as the token
-          // here, the max age is in milliseconds
-          // res.cookie('token', token, { maxAge: jwtExpirySeconds * 1000, httpOnly: true });
-          res.setHeader(
-            "Set-Cookie",
-            serialize("token", token, {
-              maxAge: jwtExpirySeconds * 1000,
-              httpOnly: true,
-            })
-          );
-          res
-            .status(200)
-            .send({
-              screen: user.username,
-              _id: user._id,
-              token: token,
-              user,
-            });
-          console.log("logged in");
-          req.user = user;
-          //call the next middleware
-          // next();
-        } else {
-          res.json({
-            status: "error",
-            message: "Invalid username/password.",
-            data: null,
-          });
-        }
+    if (user) {
+      if (bcrypt.compareSync(password, user.password)) {
+        // Create a new token with the user id in the payload
+        // and which expires 300 seconds after issue
+        const token = jwt.sign(
+          { id: user._id, username: user.username },
+          jwtKey,
+          { algorithm: "HS256", expiresIn: jwtExpirySeconds }
+        );
+        // set the cookie as the token string, with a similar max age as the token
+        // here, the max age is in milliseconds
+        // res.cookie('token', token, { maxAge: jwtExpirySeconds * 1000, httpOnly: true });
+        res.setHeader(
+          "Set-Cookie",
+          serialize("token", token, {
+            maxAge: jwtExpirySeconds * 1000,
+            httpOnly: true,
+          })
+        );
+        res.status(200).send({
+          screen: user.username,
+          _id: user._id,
+          token: token,
+          user,
+        });
+        console.log("logged in");
+        req.user = user;
+        //call the next middleware
+        // next();
+      } else {
+        res.json({
+          status: "error",
+          message: "Invalid username/password.",
+          data: null,
+        });
       }
-      else{
-        res.status(400).send("user not found");
-      }
+    } else {
+      res.status(400).send({ user: "user not found" });
+    }
   } else {
     res.status(422).send("req_method_not_supported");
   }
-
 };
 
 export default connectDB(handler);

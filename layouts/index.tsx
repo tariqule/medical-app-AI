@@ -1,13 +1,6 @@
-import {
-  CssBaseline,
-  makeStyles,
-  MuiThemeProvider,
-  Paper,
-  ThemeProvider,
-} from "@material-ui/core";
+import { CssBaseline, MuiThemeProvider, Paper } from "@material-ui/core";
 import React from "react";
 import getTheme from "../theme";
-import Footer from "./footer";
 import TopBar from "./topbar";
 
 interface Props {
@@ -18,7 +11,7 @@ export default function MainLayout({ children }: Props) {
   return (
     <MuiThemeProvider theme={getTheme()}>
       <CssBaseline />
-      <Paper elevation={0}>
+      <Paper elevation={0} style={{ overflow: "hidden" }}>
         <TopBar />
         {children}
       </Paper>
